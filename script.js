@@ -1,49 +1,37 @@
+function createPixels(totalNumberOfPixels){
 
-const container = document.querySelector(".container");
-const body = document.querySelector("body")
+    //remove any prevoius pixels
+    container.innerHTML = '';
 
-const windowWidth = window.innerWidth
-const windowHeght = window.innerHeight
+    //create DOM elements
+    for (let i = 0; i < totalNumberOfPixels; i++){
+        let newElement = document.createElement("div", );
+        newElement.classList.add(`pixels`);
+        newElement.classList.add(i);
+        newElement.setAttribute("style","height: 1px; width: 1px; background-color: black")
+        container.appendChild(newElement)
+    }
 
+    //change the color of DOM elements on mouse hover
 
-container.setAttribute("style", `width: ${windowWidth}px; height: ${windowHeght}px`)
-//body.setAttribute("style", `width: ${windowWidth}px; height: ${windowHeght}px`)
-
-
-console.log(window.innerHeight)
-console.log(window.innerWidth)
-
-let dimensions = (windowWidth/8)*(windowHeght/8)
-
-
-
-for (let i = 0; i < dimensions; i++){
-    let newElement = document.createElement("div", );
-    newElement.classList.add(`pixels`);
-    newElement.classList.add(i);
-    newElement.setAttribute("style","height: 8px; width: 8px; background-color: black")
-    container.appendChild(newElement)
+    let pixels = document.querySelectorAll(".pixels");
+    for (let i = 0; i < totalNumberOfPixels; i++){
+        pixels[i].addEventListener("mouseenter", () => {
+            console.log(i);
+            pixels[i].style.backgroundColor = "blue";   
+        });
+    }
 }
 
-
-const pixels = document.querySelectorAll(".pixels");
-
-
-const changeColor = function (pixelNumber) {
-    //let pixelzzzz = document.querySelectorAll(`.pixels.${pixelNumber}`);
-    console.log(pixelNumber)
+//clear the color of the canvas
+function resetCanvas() {
+    let pixels = document.querySelectorAll(".pixels");
+    for (let i = 0; i < totalNumberOfPixels; i++){
+        pixels[i].style.backgroundColor = "black"
+    }
 }
 
-
-for (let i = 0; i < dimensions; i++){
-    pixels[i].addEventListener("mouseenter", () => {
-        console.log(i);
-        //pixels[i].setAttribute('style', 'background: blue;');   
-        pixels[i].style.backgroundColor = "blue";   
-
-    });
-}
-
+//call on resetCanvas() with esc
 document.addEventListener('keydown', evt => {
     if (evt.key === 'Escape') {
         //alert('Escape pressed');
@@ -51,8 +39,44 @@ document.addEventListener('keydown', evt => {
     }
 });
 
-function resetCanvas() {
-    for (let i = 0; i < dimensions; i++){
-        pixels[i].style.backgroundColor = "black"
-    }
+function setScale() {
+    let scale = document.querySelector(".scale").value;
+
+    container.style.transform = `scale(${scale})`
+    container.style.transformOrigin = "center bottom"
 }
+
+function setWidth() {
+    let desiredWidth = widthTextBox.value;
+    let height = heightTextBox.value;
+
+    container.style.width = `${desiredWidth}px`
+    createPixels(desiredWidth*height)
+}
+
+function setHeight() {
+    let desiredHeight = heightTextBox.value;
+    let width = widthTextBox.value
+
+    container.style.height = `${desiredHeight}px`
+    createPixels(desiredHeight*width)
+}
+
+//retrive values and initiate canvas
+const container = document.querySelector(".container");
+let canvasWidth = document.querySelector(".width").value
+let canvasHeight = document.querySelector(".height").value
+let scale = document.querySelector(".scale").value
+let totalNumberOfPixels = canvasWidth*canvasHeight
+createPixels(totalNumberOfPixels)
+container.setAttribute("style", `width: ${canvasWidth}px; height: ${canvasHeight}px; transform: scale(${scale});`)
+container.style.transformOrigin = "center bottom"
+
+
+//assign texbox values to their corresponding functions
+const widthTextBox = document.querySelector(".width");
+const scaleTextBox = document.querySelector(".scale");
+const heightTextBox = document.querySelector(".height");
+widthTextBox.onchange = setWidth;
+scaleTextBox.onchange = setScale;
+heightTextBox.onchange = setHeight;
