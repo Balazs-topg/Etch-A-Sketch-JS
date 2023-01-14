@@ -1,0 +1,39 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    background-color: black;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: rgba(69, 69, 69, 1);
+
+}
+
+.container {
+    
+    width: 100vw;
+    height: 100vh;
+    
+    background-color: black;
+
+    padding: 0px;
+    gap: 0px;
+
+
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: flex-start;
+    align-content: flex-start;
+}
