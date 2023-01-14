@@ -44,3 +44,15 @@ for (let i = 0; i < dimensions; i++){
     });
 }
 
+document.addEventListener('keydown', evt => {
+    if (evt.key === 'Escape') {
+        //alert('Escape pressed');
+        resetCanvas()
+    }
+});
+
+function resetCanvas() {
+    for (let i = 0; i < dimensions; i++){
+        pixels[i].style.backgroundColor = "black"
+    }
+}
