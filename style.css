@@ -2,6 +2,8 @@
     margin: 0px;
     padding: 0px;
     font-family: sans-serif;
+
+    font-size: 15px;
 }
 
 html {
@@ -13,7 +15,7 @@ body{
     height: 100vh;
 
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: column;
 
@@ -21,16 +23,25 @@ body{
 
 }
 
+.wrapper{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .container {
-    
+
     width: 100vw;
     height: 100vh;
     
-    background-color: rgb(210, 26, 26);
+    cursor: crosshair;
+
+    background-color: black;
 
     padding: 0px;
     gap: 0px;
-
 
     display: flex;
     flex-wrap: wrap;
@@ -38,11 +49,32 @@ body{
     align-items: flex-start;
     align-content: flex-start;
 
+    box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.473);
+
+    transition: transform 300ms, width 300ms, height 300ms;
+
 }
+  
 
 .option-bar{
-    height: 100px;
-    width: 400px;
+    z-index: 1;
+    height: 80px;
+    width: 460px;
     background-color: antiquewhite;
 
+    flex-shrink: 0;
+
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 10px;
+    border-radius: 20px;
+
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.473);
+}
+
+input{
+    width: 60px;
 }

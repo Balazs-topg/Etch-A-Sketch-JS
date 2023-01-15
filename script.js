@@ -12,13 +12,22 @@ function createPixels(totalNumberOfPixels){
         container.appendChild(newElement)
     }
 
-    //change the color of DOM elements on mouse hover
-
+    //change the color of DOM elements on mouse hover and click
     let pixels = document.querySelectorAll(".pixels");
     for (let i = 0; i < totalNumberOfPixels; i++){
         pixels[i].addEventListener("mouseenter", () => {
-            console.log(i);
-            pixels[i].style.backgroundColor = "blue";   
+            if (mouseDown) {
+                pixels[i].style.backgroundColor = "blue";   
+            }
+        });
+    }
+
+    //change the color of DOM elements on click
+    pixels = document.querySelectorAll(".pixels");
+    for (let c = 0; c < totalNumberOfPixels; c++){
+        pixels[c].addEventListener("click", () => {
+            console.log(c);
+            pixels[c].style.backgroundColor = "blue";   
         });
     }
 }
@@ -26,7 +35,7 @@ function createPixels(totalNumberOfPixels){
 //clear the color of the canvas
 function resetCanvas() {
     let pixels = document.querySelectorAll(".pixels");
-    for (let i = 0; i < totalNumberOfPixels; i++){
+    for (let i = 0; i < (widthTextBox.value*heightTextBox.value); i++){
         pixels[i].style.backgroundColor = "black"
     }
 }
@@ -43,7 +52,6 @@ function setScale() {
     let scale = document.querySelector(".scale").value;
 
     container.style.transform = `scale(${scale})`
-    container.style.transformOrigin = "center bottom"
 }
 
 function setWidth() {
@@ -67,11 +75,17 @@ const container = document.querySelector(".container");
 let canvasWidth = document.querySelector(".width").value
 let canvasHeight = document.querySelector(".height").value
 let scale = document.querySelector(".scale").value
-let totalNumberOfPixels = canvasWidth*canvasHeight
-createPixels(totalNumberOfPixels)
-container.setAttribute("style", `width: ${canvasWidth}px; height: ${canvasHeight}px; transform: scale(${scale});`)
-container.style.transformOrigin = "center bottom"
+createPixels(canvasWidth*canvasHeight)
+container.style.width = `${canvasWidth}px`
+container.style.height = `${canvasHeight}px`
+container.style.transform = `scale(${scale})`
 
+//find out if mouse is clicked and store it in as a boolean
+let mouseDown = false;
+function click() {mouseDown = true}
+function unclick() {mouseDown = false}
+document.onmousedown = click;
+document.onmouseup = unclick;
 
 //assign texbox values to their corresponding functions
 const widthTextBox = document.querySelector(".width");
