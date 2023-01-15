@@ -17,7 +17,7 @@ function createPixels(totalNumberOfPixels){
     for (let i = 0; i < totalNumberOfPixels; i++){
         pixels[i].addEventListener("mouseenter", () => {
             if (mouseDown) {
-                pixels[i].style.backgroundColor = "blue";   
+                pixels[i].style.backgroundColor = currentColor;   
             }
         });
     }
@@ -27,7 +27,7 @@ function createPixels(totalNumberOfPixels){
     for (let c = 0; c < totalNumberOfPixels; c++){
         pixels[c].addEventListener("click", () => {
             console.log(c);
-            pixels[c].style.backgroundColor = "blue";   
+            pixels[c].style.backgroundColor = currentColor;   
         });
     }
 }
@@ -86,6 +86,18 @@ function click() {mouseDown = true}
 function unclick() {mouseDown = false}
 document.onmousedown = click;
 document.onmouseup = unclick;
+
+//find colors and store the users choice in a variable
+let currentColor = "blue"
+const colorRed = document.querySelector(".red")
+const colorBlue = document.querySelector(".blue")
+const colorBlack = document.querySelector(".black")
+const colorCustom = document.querySelector(".custom")
+colorRed.addEventListener("click", () => {currentColor = "red"})
+colorBlue.addEventListener("click", () => {currentColor = "blue"})
+colorBlack.addEventListener("click", () => {currentColor = "black"})
+colorCustom.addEventListener("click", () => {currentColor = "white"})
+
 
 //assign texbox values to their corresponding functions
 const widthTextBox = document.querySelector(".width");

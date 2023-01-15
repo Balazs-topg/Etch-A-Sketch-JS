@@ -21,6 +21,8 @@ body{
 
     background-color: rgba(69, 69, 69, 1);
 
+    box-sizing: border-box;
+
 }
 
 .wrapper{
@@ -74,6 +76,64 @@ body{
 
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.473);
 }
+
+.option-bar-top{
+    z-index: 1;
+    height: 80px;
+    width: 460px;
+    background-color: antiquewhite;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    justify-content: space-evenly;
+    align-items: center;
+
+    margin-top: 10px;
+    border-radius: 20px;
+
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.473);
+
+
+}
+
+.color {
+    width: 40px;
+    height: 40px;
+    background-color: blue;
+    border-radius: 10px;
+
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.198);
+
+    transition: transform 100ms;
+}
+
+.color:hover {
+    transform: scale(1.1);    
+}
+.color:active {
+    transform: scale(0.9);    
+}
+
+
+
+.color.red{
+    background-color: red;
+}
+.color.blue{
+    background-color: blue;
+}
+.color.black{
+    background-color: black;
+}
+.color.custom{
+    background-color: white;
+}
+
+
+
+
 
 input{
     width: 60px;
