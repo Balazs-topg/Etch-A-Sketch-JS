@@ -26,7 +26,6 @@ function createPixels(totalNumberOfPixels){
     pixels = document.querySelectorAll(".pixels");
     for (let c = 0; c < totalNumberOfPixels; c++){
         pixels[c].addEventListener("click", () => {
-            console.log(c);
             pixels[c].style.backgroundColor = currentColor;   
         });
     }
@@ -96,7 +95,8 @@ const colorCustom = document.querySelector(".custom")
 colorRed.addEventListener("click", () => {currentColor = "red"})
 colorBlue.addEventListener("click", () => {currentColor = "blue"})
 colorBlack.addEventListener("click", () => {currentColor = "black"})
-colorCustom.addEventListener("click", () => {currentColor = "white"})
+function update(picker){currentColor = picker.toRGBString()} //custom color-picker
+
 
 
 //assign texbox values to their corresponding functions
